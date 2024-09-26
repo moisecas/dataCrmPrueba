@@ -1,33 +1,24 @@
-name: Selenium Test
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
 jobs:
   selenium-test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v2
 
-    - name: Set up Java
-      uses: actions/setup-java@v1
-      with:
-        java-version: '11'
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
 
-    - name: Set up Selenium WebDriver
-      run: |
-        wget https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/local/bin/
-        sudo chmod +x /usr/local/bin/chromedriver
+      - name: Set up Selenium WebDriver
+        run: |
+          wget https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
 
-    - name: Run Selenium Tests
-      run: |
-        ./mvnw test
+      - name: Set executable rights on mvnw
+        run: chmod +x ./mvnw
+
+      - name: Run Selenium Tests
+        run: ./mvnw test
