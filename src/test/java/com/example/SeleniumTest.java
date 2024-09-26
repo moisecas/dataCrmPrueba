@@ -2,6 +2,7 @@ package test.java.com.example;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +13,7 @@ public class SeleniumTest {
 
     @Before
     public void setUp() {
-        // Set the path for ChromeDriver
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
